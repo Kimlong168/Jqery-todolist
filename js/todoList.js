@@ -50,10 +50,11 @@ $(document).ready(function () {
   $(document).on("click", ".edit", function () {
     //edit the task in DOM
     let value = $(this.parentNode.parentNode).text();
+
     oldTaskText = value;
 
     $(this.parentNode.parentNode).after(
-      `<li class="flex items-center mb-2 "><input class="flex-1 h-[40px] w-full p-2 bg-transparent border border-pink-600 cursor-text outline-none" type="text" value=${value}><button class="save p-2 bg-pink-600 text-white border border-pink-600 h-[40px]"><img width='20' src='./images/save.png' class='delete cursor-pointer '/></button> </li>`
+      `<li class="flex items-center mb-2 "><input class="flex-1 h-[40px] w-full p-2 bg-transparent border border-pink-600 cursor-text outline-none" type="text" value="${value}"><button class="save p-2 bg-pink-600 text-white border border-pink-600 h-[40px]"><img width='20' src='./images/save.png' class='delete cursor-pointer '/></button> </li>`
     );
     $(this.parentNode.parentNode).fadeOut(0);
   });
