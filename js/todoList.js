@@ -37,14 +37,44 @@ $(document).ready(function () {
     },
   });
 
-  $(document).on("dblclick", ".delete", function () {
-    //detele task from local storage
-    deleteTask($(this).parent().parent());
-    //delete task from DOM
-    $(this.parentNode.parentNode)
-      .toggleClass("line-through")
-      .slideUp("slow")
-      .css("background-color", "red");
+  $("#dialog2").dialog({
+    autoOpen: false,
+    modal: true,
+  });
+
+  $(document).on("click", ".delete", function () {
+    // const result = confirm("Are you sure to delete?");
+    const taskToDelete = $(this).parent().parent();
+    const parentNode = $(this.parentNode.parentNode);
+    $("#dialog2").dialog("open");
+    $("#dialog2").dialog({
+      autoOpen: false,
+      title: "Are you sure to delete?",
+      modal: true,
+      buttons: {
+        Ok: function () {
+          $(this).dialog("close");
+          //detele task from local storage
+          deleteTask(taskToDelete);
+          //delete task from DOM
+          parentNode
+            .toggleClass("line-through")
+            .slideUp("slow")
+            .css("background-color", "red");
+        },
+      },
+    });
+    // if (result) {
+    //   //detele task from local storage
+    //   deleteTask($(this).parent().parent());
+    //   //delete task from DOM
+    //   $(this.parentNode.parentNode)
+    //     .toggleClass("line-through")
+    //     .slideUp("slow")
+    //     .css("background-color", "red");
+    // } else {
+    //   console.log("User clicked Cancel");
+    // }
   });
 
   $(document).on("click", ".edit", function () {
@@ -56,7 +86,7 @@ $(document).ready(function () {
     $(this.parentNode.parentNode).after(
       `<li class="flex items-center mb-2 "><input class="flex-1 h-[40px] w-full p-2 bg-transparent border border-pink-600 cursor-text outline-none" type="text" value="${value}"><button class="save p-2 bg-pink-600 text-white border border-pink-600 h-[40px]"><img width='20' src='./images/save.png' class='delete cursor-pointer '/></button> </li>`
     );
-    $(this.parentNode.parentNode).fadeOut(0);
+    $(this.parentNode.parentNode).slideUp(200);
   });
 
   $(document).on("click", ".save", function () {
@@ -68,13 +98,24 @@ $(document).ready(function () {
       return;
     }
 
-    $(this.parentNode).fadeOut(0);
+    $(this.parentNode).slideUp(300);
     $(this.parentNode).after(
-      `<div class="list bg-pink-600 p-2 mb-2 cursor-grab flex justify-between items-center"><li >${value}</li><div class='flex gap-2'><img width='20' src='./images/trash.png' class='delete cursor-pointer'/><img width='20' src='./images/edit.png' class='edit cursor-pointer'/></div></div>`
+      `<div class="list bg-pink-600 p-2 mb-2 cursor-grab flex justify-between items-center">><li>${value}</li><div class='flex gap-2'><img width='20' src='./images/trash.png' class='delete cursor-pointer'/><img width='20' src='./images/edit.png' class='edit cursor-pointer'/></div></div>`
     );
 
     //edit the task in local storage
     editTask(oldTaskText, value);
+  });
+
+  //mark as done
+  $(document).on("dblclick", "div.list", function () {
+    $(this).toggleClass("bg-green-500");
+ 
+    if ($(this).find("span").length == 0) {
+      $(this.children[0]).prepend('<span class="done mr-3">✔️</span>');
+    } else {
+      $(this).find("span.done").remove();
+    }
   });
 
   $("ul").sortable();
