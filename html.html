@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Call back function and chaining</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .blue {
+        color: white;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Call back function and chaining</h1>
+    <input
+      id="input"
+      type="text"
+      class="border border-gray-800 p-2 rounded m-6"
+      value="this is input value"
+    />
+    <div
+      id="box"
+      class="w-[300px] h-[300px] border-2 border-red-500 bg-blue-500 p-5 overflow-auto"
+    >
+      <p id="test">This <i>box</i> 1</p>
+    </div>
+
+    <button class="p-2 bg-green-500 rounded text-white" id="btn1">
+      Append
+    </button>
+    <button class="p-2 bg-green-500 rounded text-white" id="btn2">
+      prepend
+    </button>
+    <button class="p-2 bg-green-500 rounded text-white" id="btn3">
+      before
+    </button>
+    <button class="p-2 bg-green-500 rounded text-white" id="btn4">after</button>
+    <br />
+    <br />
+    <button class="p-2 bg-green-500 rounded text-white" id="btn5">
+      remove
+    </button>
+
+    <button class="p-2 bg-green-500 rounded text-white" id="btn6">empty</button>
+    <br />
+    <br />
+    <button class="p-2 bg-green-500 rounded text-white" id="btn7">
+      get text
+    </button>
+    <button class="p-2 bg-green-500 rounded text-white" id="btn8">
+      get html
+    </button>
+
+    <button class="p-2 bg-green-500 rounded text-white" id="btn9">
+      get value from field(input)
+    </button>
+    <button class="p-2 bg-green-500 rounded text-white" id="btn10">
+      get css value
+    </button>
+    <button class="p-2 bg-green-500 rounded text-white" id="btn11">CSS</button>
+
+    <br />
+    <br />
+    <button class="p-2 bg-green-500 rounded text-white" id="btn12">add class</button>
+    <button class="p-2 bg-green-500 rounded text-white" id="btn13">remove class</button>
+    <button class="p-2 bg-green-500 rounded text-white" id="btn14">toggle class</button>
+    <!-- javascript and jqueary -->
+    <script src="./jquery.js" type="text/javascript"></script>
+    <script src="./js/html.js" type="text/javascript"></script>
+  </body>
+</html>

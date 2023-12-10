@@ -1,0 +1,30 @@
+.eq(): This method reduces the set of matched elements to the one at the specified index. For example:
+// Select the second element in the list
+$("li").eq(1).css("color", "red");
+
+
+.find(): This method gets the descendants of each element in the current set of matched elements, filtered by a selector, jQuery object, or element. For example:
+// Find all <span> elements within <div> elements
+$("div").find("span").css("color", "blue");
+
+
+.index(): This method returns the index position of the first element within the jQuery object relative to its sibling elements. For example:
+// Get the index of the selected <li> element within its siblings
+var index = $("li").index();
+console.log(index);
+
+each() Method:The each() method is used to iterate over a jQuery object, executing a function for each matched element. It allows you to perform a specific action for each item in a collection of elements.
+Example:
+// Iterate over all paragraphs and set their text to "Hello"
+$("p").each(function(index, element) {
+    $(this).text("Hello");
+});
+In this example, the each() method is used to iterate over all <p> elements on the page and set their text content to "Hello".
+
+
+keyup() Event:The keyup() method is not a standalone method; it's an event handler in jQuery that is used to bind a function to the "keyup" event. The "keyup" event is triggered when a key on the keyboard is released.
+Example:
+// Attach a keyup event handler to an input element
+$("input").keyup(function() {
+    console.log("Key released!");
+});
