@@ -9,7 +9,7 @@ $(document).ready(function () {
       return;
     }
     $("ul").append(
-      '<div class="list bg-pink-600 p-2 mb-2 cursor-grab flex justify-between items-center"><li >' +
+      '<div class="list bg-pink-600 p-2 mb-2 cursor-grab flex justify-between items-center"><li>' +
         $("#task").val() +
         "</li><div class='flex gap-2'><img width='20' src='./images/trash.png' class='delete cursor-pointer'/><img width='20' src='./images/edit.png' class='edit cursor-pointer'/></div></div>"
     );
@@ -80,11 +80,11 @@ $(document).ready(function () {
   $(document).on("click", ".edit", function () {
     //edit the task in DOM
     let value = $(this.parentNode.parentNode).text();
-
+    value = value.replace(/✔️/g, "");
     oldTaskText = value;
 
     $(this.parentNode.parentNode).after(
-      `<li class="flex items-center mb-2 "><input class="flex-1 h-[40px] w-full p-2 bg-transparent border border-pink-600 cursor-text outline-none" type="text" value="${value}"><button class="save p-2 bg-pink-600 text-white border border-pink-600 h-[40px]"><img width='20' src='./images/save.png' class='delete cursor-pointer '/></button> </li>`
+      `<li class="flex items-center mb-2 "><input class="flex-1 h-[40px] w-full p-2 bg-transparent border border-pink-600 cursor-text outline-none" type="text" value="${value}"><button class="save p-2 bg-pink-600 text-white border border-pink-600 h-[40px]"><img width='20' src='./images/save.png' class=' cursor-pointer '/></button> </li>`
     );
     $(this.parentNode.parentNode).slideUp(200);
   });
@@ -92,6 +92,7 @@ $(document).ready(function () {
   $(document).on("click", ".save", function () {
     let value = $(this.parentNode).find("input").val();
 
+   
     if (value == "") {
       $("#dialog").dialog("option", "title", "Please enter a task");
       $("#dialog").dialog("open");
@@ -100,7 +101,7 @@ $(document).ready(function () {
 
     $(this.parentNode).slideUp(300);
     $(this.parentNode).after(
-      `<div class="list bg-pink-600 p-2 mb-2 cursor-grab flex justify-between items-center">><li>${value}</li><div class='flex gap-2'><img width='20' src='./images/trash.png' class='delete cursor-pointer'/><img width='20' src='./images/edit.png' class='edit cursor-pointer'/></div></div>`
+      `<div class="list bg-pink-600 p-2 mb-2 cursor-grab flex justify-between items-center"><li>${value}</li><div class='flex gap-2'><img width='20' src='./images/trash.png' class='delete cursor-pointer'/><img width='20' src='./images/edit.png' class='edit cursor-pointer'/></div></div>`
     );
 
     //edit the task in local storage
@@ -110,7 +111,7 @@ $(document).ready(function () {
   //mark as done
   $(document).on("dblclick", "div.list", function () {
     $(this).toggleClass("bg-green-500");
- 
+
     if ($(this).find("span").length == 0) {
       $(this.children[0]).prepend('<span class="done mr-3">✔️</span>');
     } else {
